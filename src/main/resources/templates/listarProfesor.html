@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>MENU PRINCIPAL</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/index}">App AdminSchool</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/index}">Inicio <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Alumnos
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/alumnos}">Lista de Alumnos</a>
+						<a class="dropdown-item" th:href="@{/pagoporclase}">Pago por Clase</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Profesores
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/profesor}">Lista de Profesores</a>
+						<a class="dropdown-item" th:href="@{/salario}">Tipos de Salario</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Talleres</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Usuarios</a>
+				</li>
+
+
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container-fluid text-center mt-5" >
+		<div>
+			<h1>Lista de Profesores Registrados</h1>
+		</div>
+		<br>
+		<div>
+			<table class="table table-bordered table-striped" >
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">Salario</th>
+						<th scope="col">Celular</th>
+						<th scope="col">DNI</th>
+						<th scope="col">Correo</th>
+						<th scope="col">Direccion</th>
+						<th scope="col">Fecha de Inicio</th>
+						<th scope="col">Fecha de Finilizacion</th>
+						<th scope="col" style="width: 250px">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p:${ltsProfesor}">
+						<td th:text="${p.idprofesor}"></td>
+						<td th:text="${p.nombre}"></td>
+						<td th:text="${p.apellido}"></td>
+						<td th:text="${p.salario.tipo}"></td>
+						<td th:text="${p.celular}"></td>
+						<td th:text="${p.dni}"></td>
+						<td th:text="${p.correo}"></td>
+						<td th:text="${p.direccion}"></td>
+						<td th:text="${p.fechaini}"></td>
+						<td th:text="${p.fechafin}"></td>
+						<td>
+							<a th:href="@{/profesor/editar/{idprofesor}(idprofesor=${p.idprofesor})}"
+								class="btn btn-info">Editar</a>
+								&nbsp;&nbsp;
+							<a th:href="@{/profesor/eliminar/{idprofesor}(idprofesor=${p.idprofesor})}"
+								class="btn btn-danger">Eliminar</a>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<div class="text-center p">
+				<a th:href="@{/profesor/nuevo}" class="btn btn-success">Registrar</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
