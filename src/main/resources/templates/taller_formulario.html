@@ -42,7 +42,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" th:href="@{/taller}">Talleres</a>
+					<a class="nav-link" th:href=@{/taller}>Talleres</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -55,46 +55,39 @@
 					</div>
 				</li>
 
+
 			</ul>
 		</div>
 	</nav>
 
 	<div class="container text-center">
 		<div>
-			<h1>Tipos de Salarios</h1>
+			<h1 th:if="${taller.idtaller == 0}">Registrar de Taller</h1>
+			<h1 th:unless="${taller.idtaller == 0}">Editar de Taller</h1>
 		</div>
-		<br>
-		<div>
-			<table class="table table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">ID</th>
-						<th scope="col" style="width: 40	0px">Tipo</th>
-						<th scope="col">Descripcion</th>
-						<th scope="col" style="width: 250px">Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="p:${ltsSalario}">
-						<td th:text="${p.idsalario}"></td>
-						<td th:text="${p.tipo}"></td>
-						<td th:text="${p.descripcion}"></td>
-						<td class="d-flex justify-content-center">
-							<a th:href="@{/salario/editar/{idsalario}(idsalario=${p.idsalario})}"
-								class="btn btn-info">Editar</a>
-							&nbsp;&nbsp;&nbsp
-							<a th:href="@{/salario/eliminar/{idsalario}(idsalario=${p.idsalario})}"
-								class="btn btn-danger">Eliminar</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="text-center p">
-				<a th:href="@{/salario/nuevo}" class="btn btn-success">Agregar</a>
-			</div>
-		</div>
-	</div>
+		<form th:action="@{/taller/guardar}" th:object="${taller}" method="post"
+			style="max-width: 600px ; margin:0 auto;">
+			<input type="hidden" th:field="*{idtaller}" th:value="${taller.idtaller}" />
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-from-label col-sm-4">Nombre</label>
+					<div class="col-sm-8 mb-3">
+						<input type="text" th:field="*{nombre}" class="form-control" required />
+					</div>
 
+					<label class="col-from-label col-sm-4">Dias</label>
+					<div class="col-sm-8 mb-3">
+						<input type="text" th:field="*{dias}" class="form-control" required />
+					</div>
+				</div>
+
+				<div class="text-center p">
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

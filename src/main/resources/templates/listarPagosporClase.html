@@ -42,12 +42,18 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Talleres</a>
+					<a class="nav-link" th:href=@{/taller}>Talleres</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Usuarios</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Usuarios
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/usuario}">Usuario</a>
+						<a class="dropdown-item" th:href="@{/rol}">Roles</a>
+					</div>
 				</li>
-
 
 			</ul>
 		</div>
@@ -65,7 +71,7 @@
 						<th scope="col">ID</th>
 						<th scope="col" style="width: 40	0px">Clases</th>
 						<th scope="col">Costo</th>
-						<th scope="col"  style="width: 250px">Acciones</th>
+						<th scope="col" style="width: 250px">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,9 +80,11 @@
 						<td th:text="${p.clases}"></td>
 						<td th:text="${p.costo}"></td>
 						<td class="d-flex justify-content-center">
-							<a th:href="@{/pagoporclase/editar/{idpago}(idpago=${p.idpago})}" class="btn btn-info">Editar</a>
+							<a th:href="@{/pagoporclase/editar/{idpago}(idpago=${p.idpago})}"
+								class="btn btn-info">Editar</a>
 							&nbsp;&nbsp;&nbsp
-							<a th:href="@{/pagoporclase/eliminar/{idpago}(idpago=${p.idpago})}" class="btn btn-danger">Eliminar</a>
+							<a th:href="@{/pagoporclase/eliminar/{idpago}(idpago=${p.idpago})}"
+								class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>

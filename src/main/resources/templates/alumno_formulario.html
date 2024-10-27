@@ -42,10 +42,17 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Talleres</a>
+					<a class="nav-link" th:href="@{/taller}">Talleres</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Usuarios</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Usuarios
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/usuario}">Usuario</a>
+						<a class="dropdown-item" th:href="@{/rol}">Roles</a>
+					</div>
 				</li>
 
 
@@ -55,12 +62,12 @@
 
 	<div class="container text-center">
 		<div>
-		    <h1 th:if="${alumno.idalumno == 0}">Registrar de Alumnos</h1>
-		    <h1 th:unless="${alumno.idalumno == 0}">Editar de Alumno</h1>
+			<h1 th:if="${alumno.idalumno == 0}">Registrar de Alumnos</h1>
+			<h1 th:unless="${alumno.idalumno == 0}">Editar de Alumno</h1>
 		</div>
 		<form th:action="@{/alumnos/guardar}" th:object="${alumno}" method="post"
 			style="max-width: 600px ; margin:0 auto;">
-			<input type="hidden"th:field="*{idalumno}" th:value="${alumno.idalumno}"/>
+			<input type="hidden" th:field="*{idalumno}" th:value="${alumno.idalumno}" />
 			<div class="m-3">
 				<div class="form-group row">
 					<label class="col-from-label col-sm-4">Nombre de Alumno : </label>
@@ -92,10 +99,12 @@
 							</th:block>
 						</select>
 					</div>
+					
 					<label class="col-from-label col-sm-4">Fecha de Ingreso :</label>
 					<div class="col-sm-8 mb-3">
 						<input type="date" th:field="*{fechaing}" class="form-control" required />
 					</div>
+					
 					<label class="col-from-label col-sm-4">Fecha de Finalizacion :</label>
 					<div class="col-sm-8 mb-3">
 						<input type="date" th:field="*{fechafin}" class="form-control" required />

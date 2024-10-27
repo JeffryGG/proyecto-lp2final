@@ -61,7 +61,7 @@
 
 	<div class="container text-center">
 		<div>
-			<h1>Tipos de Salarios</h1>
+			<h1>Tipos de Roles</h1>
 		</div>
 		<br>
 		<div>
@@ -70,27 +70,25 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col" style="width: 40	0px">Tipo</th>
-						<th scope="col">Descripcion</th>
 						<th scope="col" style="width: 250px">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="p:${ltsSalario}">
-						<td th:text="${p.idsalario}"></td>
-						<td th:text="${p.tipo}"></td>
-						<td th:text="${p.descripcion}"></td>
+					<tr th:each="p:${ltsRol}">
+						<td th:text="${p.id}"></td>
+						<td th:text="${p.name}"></td>
 						<td class="d-flex justify-content-center">
-							<a th:href="@{/salario/editar/{idsalario}(idsalario=${p.idsalario})}"
+							<a th:href="@{/rol/editar/{id}(id=${p.id})}"
 								class="btn btn-info">Editar</a>
 							&nbsp;&nbsp;&nbsp
-							<a th:href="@{/salario/eliminar/{idsalario}(idsalario=${p.idsalario})}"
+							<a th:href="@{/rol/eliminar/{id}(id=${p.id})}"
 								class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="text-center p">
-				<a th:href="@{/salario/nuevo}" class="btn btn-success">Agregar</a>
+				<a th:href="@{/rol/nuevo}" class="btn btn-success">Agregar</a>
 			</div>
 		</div>
 	</div>

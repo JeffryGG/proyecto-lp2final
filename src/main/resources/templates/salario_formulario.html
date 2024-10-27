@@ -42,12 +42,18 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Talleres</a>
+					<a class="nav-link" th:href=@{/taller}>Talleres</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Usuarios</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Usuarios
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/usuario}">Usuario</a>
+						<a class="dropdown-item" th:href="@{/rol}">Roles</a>
+					</div>
 				</li>
-
 
 			</ul>
 		</div>
@@ -60,7 +66,7 @@
 		</div>
 		<form th:action="@{/salario/guardar}" th:object="${salario}" method="post"
 			style="max-width: 600px ; margin:0 auto;">
-			<input type="hidden"th:field="*{idsalario}" th:value="${salario.idsalario}"/>
+			<input type="hidden" th:field="*{idsalario}" th:value="${salario.idsalario}" />
 			<div class="m-3">
 				<div class="form-group row">
 					<label class="col-from-label col-sm-4">Tipo</label>
@@ -70,7 +76,7 @@
 
 					<label class="col-from-label col-sm-4">Descripcion</label>
 					<div class="col-sm-8 mb-3">
-					<input type="text" th:field="*{descripcion}" class="form-control" required />
+						<input type="text" th:field="*{descripcion}" class="form-control" required />
 					</div>
 				</div>
 

@@ -16,7 +16,7 @@
 			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" th:href="@{/index}">Inicio <span class="sr-only">(current)</span></a>
@@ -42,20 +42,28 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Talleres</a>
+					<a class="nav-link" th:href=@{/taller}>Talleres</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Usuarios</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+						aria-expanded="false">
+						Usuarios
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/usuario}">Usuario</a>
+						<a class="dropdown-item" th:href="@{/rol}">Roles</a>
+					</div>
 				</li>
-
-
 			</ul>
+			<div>
+				<a th:href="@{/AlumnoReport}" class="btn btn-danger">Exportar PDF</a>
+			</div>
 		</div>
 	</nav>
 
 	<div class="container-fluid text-center">
 		<div>
-			<h1>Tipos de Alumnos por Clase Registrados</h1>
+			<h1>Lista de Alumnos</h1>
 		</div>
 		<br>
 		<div>
@@ -86,7 +94,7 @@
 						<td>
 							<a th:href="@{/alumnos/editar/{idalumno}(idalumno=${p.idalumno})}"
 								class="btn btn-info">Editar</a>
-								&nbsp;&nbsp;
+							&nbsp;&nbsp;
 							<a th:href="@{/alumnos/eliminar/{idalumno}(idalumno=${p.idalumno})}"
 								class="btn btn-danger">Eliminar</a>
 						</td>

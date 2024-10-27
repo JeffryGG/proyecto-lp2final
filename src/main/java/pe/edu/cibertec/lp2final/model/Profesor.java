@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.ForeignKey;
 
 @Entity
 public class Profesor {
@@ -28,7 +29,7 @@ public class Profesor {
 	private String apellido;
 	
 	@ManyToOne
-	@JoinColumn(name = "salario_id")
+	 @JoinColumn(name = "salario_id", referencedColumnName = "idsalario", foreignKey = @ForeignKey(name = "FK_Profesor_Salario"))
 	private Salario salario;
 	
 	private String celular;

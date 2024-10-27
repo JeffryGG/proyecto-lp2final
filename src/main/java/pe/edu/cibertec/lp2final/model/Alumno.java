@@ -13,6 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.ForeignKey;
+
 
 @Entity
 public class Alumno {
@@ -32,7 +34,7 @@ public class Alumno {
 	private int celular;
 	
 	@ManyToOne
-	@JoinColumn(name = "pagocosto_id")
+	@JoinColumn(name = "pagocosto_id", referencedColumnName = "idpago", foreignKey = @ForeignKey(name = "FK_Alumno_PagoCosto"))
 	private PagoCosto pagoclases;
 	
 	@Temporal(TemporalType.DATE)

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>MENU PRINCIPAL</title>
+	<title>Biblioteca Municipal de Lima</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
@@ -16,7 +16,7 @@
 			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" th:href="@{/index}">Inicio <span class="sr-only">(current)</span></a>
@@ -42,7 +42,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" th:href="@{/taller}">Talleres</a>
+					<a class="nav-link" th:href=@{/taller}>Talleres</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -54,14 +54,16 @@
 						<a class="dropdown-item" th:href="@{/rol}">Roles</a>
 					</div>
 				</li>
-
 			</ul>
+			<div>
+				<a th:href="@{/UsuarioReport}" class="btn btn-danger">Exportar PDF</a>
+			</div>
 		</div>
 	</nav>
 
-	<div class="container text-center">
+	<div class="container-fluid text-center">
 		<div>
-			<h1>Tipos de Salarios</h1>
+			<h1>Lista de Usuarios</h1>
 		</div>
 		<br>
 		<div>
@@ -69,28 +71,43 @@
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col" style="width: 40	0px">Tipo</th>
-						<th scope="col">Descripcion</th>
-						<th scope="col" style="width: 250px">Acciones</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">Rol</th>
+						<th scope="col">Correo Electronico</th>
+						<th scope="col">Password</th>
+						<th scope="col">DNI</th>
+						<th scope="col">Telefono</th>
+						<th scope="col">Fecha de Nacimiento</th>
+						<th scope="col">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="p:${ltsSalario}">
-						<td th:text="${p.idsalario}"></td>
-						<td th:text="${p.tipo}"></td>
-						<td th:text="${p.descripcion}"></td>
-						<td class="d-flex justify-content-center">
-							<a th:href="@{/salario/editar/{idsalario}(idsalario=${p.idsalario})}"
+					<tr th:each="p:${ltsUsuario}">
+						<td th:text="${p.id}"></td>
+						<td th:text="${p.nombre}"></td>
+						<td th:text="${p.apellido}"></td>
+						<td>
+							<span th:each="rol : ${p.roles}" th:text="${rol.name}" th:remove="tag">, </span>
+						</td>
+						<td th:text="${p.correo}"></td>
+						<td th:text="${p.password}"></td>
+						<td th:text="${p.dni}"></td>
+						<td th:text="${p.celular}"></td>
+						<td th:text="${p.fechanac}"></td>
+						<td>
+							<a th:href="@{/usuario/editar/{id}(id=${p.id})}"
 								class="btn btn-info">Editar</a>
-							&nbsp;&nbsp;&nbsp
-							<a th:href="@{/salario/eliminar/{idsalario}(idsalario=${p.idsalario})}"
+							&nbsp;&nbsp;
+							<a th:href="@{/usuario/eliminar/{id}(id=${p.id})}"
 								class="btn btn-danger">Eliminar</a>
 						</td>
+
 					</tr>
 				</tbody>
 			</table>
 			<div class="text-center p">
-				<a th:href="@{/salario/nuevo}" class="btn btn-success">Agregar</a>
+				<a th:href="@{/registrar}" class="btn btn-success">Registrar</a>
 			</div>
 		</div>
 	</div>
